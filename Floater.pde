@@ -29,20 +29,20 @@ class Floater //Do NOT modify the Floater class! Make changes in the Spaceship c
     myCenterY += myYspeed;     
 
     //wrap around screen    
-    if(myCenterX >width)
+    if(myCenterX*0.9 >width)
     {     
       myCenterX = 0;    
     }    
-    else if (myCenterX<0)
+    else if (myCenterX*0.9<0)
     {     
       myCenterX = width;    
     }    
-    if(myCenterY >height)
+    if(myCenterY*0.9 >height)
     {    
       myCenterY = 0;    
     } 
     
-    else if (myCenterY < 0)
+    else if (myCenterY*0.9 < 0)
     {     
       myCenterY = height;    
     }   
@@ -73,4 +73,23 @@ class Floater //Do NOT modify the Floater class! Make changes in the Spaceship c
     rotate(-1*dRadians);
     translate(-1*(float)myCenterX, -1*(float)myCenterY);
   }   
+
+  public double getXV() {
+    return myXspeed;
+  }
+  public double getYV() {
+    return myYspeed;
+  }
+  public void setXSpeed(double newVx) {
+    myXspeed = newVx;
+  }
+  public void setYSpeed(double newVy) {
+    myYspeed = newVy;
+  }
+  public double getTheta() {
+    return myPointDirection;
+  }
+  public void setTheta(double newTheta) {
+    myPointDirection = newTheta;
+  }
 } 
