@@ -1,7 +1,7 @@
 Spaceship ship = new Spaceship();
 Star[] starSky = new Star[200];
 void setup() {
-  size(400,400);
+  size(800,600);
   for (int i = 0; i < starSky.length; i++) {
     starSky[i] = new Star();
   }
@@ -15,4 +15,10 @@ void draw() {
   }
   ship.move();
   ship.show();
+}
+
+void keyPressed() {
+  if (key == 'w') {
+    ship.getTheta();
+  }
 }
