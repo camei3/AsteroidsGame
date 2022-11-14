@@ -6,11 +6,11 @@ class Star {
   public Star() {
     myX = (float)(Math.random()*width);
     myY = (float)(Math.random()*height);
-    myColor = color((int)(Math.random()*25)+150,(int)(Math.random()*25)+150,(int)(Math.random()*25)+80);  
-    mySize = (float)(Math.random()*10);
-    motionPos = (float)(Math.random()*2*PI);
-    motionAmp = (float)(Math.random()*.01)+.01;
-    motionPer = radians((float)(Math.random()*10)+5);
+    myColor = color((int)(Math.random()*25)+200,(int)(Math.random()*25)+200,(int)(Math.random()*25)+130);  
+    mySize = (float)(Math.random()*5);
+    motionPos = radians((float)(Math.random()*2*PI));
+    motionAmp = (float)(Math.random()*.01)+.1;
+    motionPer = radians((float)(Math.random()*10)+65);
   }
   public void show() {
     strokeWeight(mySize);
