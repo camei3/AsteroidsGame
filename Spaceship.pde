@@ -1,15 +1,24 @@
-class Spaceship extends Floater {
-  
- public Spaceship() {
-   corners = 5;
-   xCorners = new int[] {-10,10,15,10,-10};
-   yCorners = new int[] {-10,-10,0,10,10};
-   myXspeed = 0;
-   myYspeed = 0;
-   myPointDirection = 25;
-   myColor = color(129,53,0);
-   myCenterX = width/2;
-   myCenterY = height/2;
- }
-
+class Star {
+  private float myX, myY;
+  private int myColor;
+  private float mySize;
+  private float motionPos,motionAmp,motionPer;
+  public Star() {
+    myX = (float)(Math.random()*width);
+    myY = (float)(Math.random()*height);
+    myColor = color((int)(Math.random()*25)+200,(int)(Math.random()*25)+200,(int)(Math.random()*25)+130);  
+    mySize = (float)(Math.random()*5);
+    motionPos = radians((float)(Math.random()*2*PI));
+    motionAmp = (float)(Math.random()*.01)+.1;
+    motionPer = radians((float)(Math.random()*10)+65);
+  }
+  public void show() {
+    strokeWeight(mySize);
+    stroke(myColor);
+    point(myX,myY);
+  }
+  public void move() {
+    motionPos += motionPer;
+    myY += cos(radians(motionPos))*motionAmp;
+  }
 }
