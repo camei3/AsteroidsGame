@@ -92,4 +92,20 @@ class Floater //Do NOT modify the Floater class! Make changes in the Spaceship c
   public void setTheta(double newTheta) {
     myPointDirection = newTheta;
   }
+  
+  public double getX() {
+    return myCenterX;
+  }
+  
+  public double getY() {
+    return myCenterY;
+  }
+  
+  public void setX(double newX) {
+    myCenterX = newX;
+  }
+  
+  public void setY(double newY) {
+    myCenterY = newY;
+  }
 } 
