@@ -7,6 +7,7 @@ void setup() {
 }
 
 void draw() {
+  
   double mouseAngle = Math.atan((mouseY-ship.getY())/(mouseX-ship.getX()));
   if (mouseX < ship.getX()) {
     mouseAngle += PI;
@@ -20,11 +21,16 @@ void draw() {
   }
   ship.move();
   ship.show();
-  stroke(255);
-  strokeWeight(10);
-  if (charge < 0) {
-    charge-= 0.5;
+
+  if (charge > 0) {
+    charge -= 0.1;
   }
+  noStroke();  
+  fill(125);
+  rect(width/2-100,height-20,200,10);
+  fill(lerpColor(color(255,120,0),color(120,255,0),charge/100));
+  rect(width/2-100,height-20,charge*2,10);
+  
 }
 
 public void keyPressed() {
@@ -39,12 +45,12 @@ public void keyPressed() {
   }  
   
   if (key == ' ') {
-    if (charge < 100) {
-      charge++;
-    }
-    if (charge == 100) {
+    charge++;
+    if (charge >= 100) {
       ship.setX(width/2);
       ship.setY(height/2);
+      ship.setXSpeed(0);
+      ship.setYSpeed(0);
       newSky();
       charge = 0;
     }
