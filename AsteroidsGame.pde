@@ -28,10 +28,10 @@ void draw() {
   hyperBar.show();
   if (refresh > 0) {
     if (refresh == 50) {
-      ship.setX(width/2);
-      ship.setY(height/2);
+      ship.setX(Math.random()*width);
+      ship.setY(Math.random()*height);
       ship.setXSpeed(0);
-      ship.setYSpeed(0);
+      ship.setYSpeed(0);                       
       newSky();      
     }
     translate((width*refresh*2/100)-width,0);
@@ -49,12 +49,19 @@ public void keyPressed() {
       ship.setXSpeed(ship.getXV() + 0.1*Math.cos(radians((float)ship.getTheta())));
       ship.setYSpeed(ship.getYV() + 0.1*Math.sin(radians((float)ship.getTheta())));
     }
-  
+    
     if (key == 's') {
-      ship.setXSpeed(ship.getXV() - 0.1*Math.cos(radians((float)ship.getTheta())));
-      ship.setYSpeed(ship.getYV() - 0.1*Math.sin(radians((float)ship.getTheta())));
+      ship.setXSpeed(ship.getXV() + 0.1*Math.cos(radians((float)ship.getTheta())+PI));
+      ship.setYSpeed(ship.getYV() + 0.1*Math.sin(radians((float)ship.getTheta())+PI));
     }  
-  
+    if (key == 'a') {
+      ship.setXSpeed(ship.getXV() + 0.1*Math.cos(radians((float)ship.getTheta())-PI/2));
+      ship.setYSpeed(ship.getYV() + 0.1*Math.sin(radians((float)ship.getTheta())-PI/2));
+    }  
+    if (key == 'd') {
+      ship.setXSpeed(ship.getXV() + 0.1*Math.cos(radians((float)ship.getTheta())+PI/2));
+      ship.setYSpeed(ship.getYV() + 0.1*Math.sin(radians((float)ship.getTheta())+PI/2));
+    }      
     if (key == ' ') {
       hyperBar.tick(1.5);
       if (hyperBar.isFilled()) {
@@ -112,5 +119,4 @@ public class TimerUI {
     endColor = eC;
   }
 }
-
 
