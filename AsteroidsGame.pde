@@ -35,10 +35,10 @@ void draw() {
       newSky();      
     }
     translate((width*refresh*2/100)-width,0);
-    fill(lerpColor(color(0,0),color(0,255),abs(refresh/50)));
+    fill(lerpColor(color(0,0),color(0,255),(50-abs(50-refresh))/50));
     rect(0, 0, width, height); 
     resetMatrix();
-    refresh--;
+    refresh-=2.5;
 
   }
 }
