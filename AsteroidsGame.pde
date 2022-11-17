@@ -32,6 +32,7 @@ void draw() {
     if (refresh == 50) {
       ship.setX(Math.random()*width);
       ship.setY(Math.random()*height);
+      ship.setTheta(Math.random()*360);      
       ship.setXSpeed(0);
       ship.setYSpeed(0);                       
       newSky();      
