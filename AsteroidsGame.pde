@@ -1,6 +1,7 @@
 Spaceship ship = new Spaceship();
 Star[] starSky = new Star[200];
 TimerUI hyperBar;
+boolean mouseMode = true;
 float refresh = 0;
 void setup() {
   size(800, 600);
@@ -9,12 +10,13 @@ void setup() {
 }
 
 void draw() {
-
-  double mouseAngle = Math.atan((mouseY-ship.getY())/(mouseX-ship.getX()));
-  if (mouseX < ship.getX()) {
-    mouseAngle += PI;
+  if (mouseMode) {
+    double mouseAngle = Math.atan((mouseY-ship.getY())/(mouseX-ship.getX()));
+    if (mouseX < ship.getX()) {
+      mouseAngle += PI;
+    }    
+      ship.setTheta(degrees((float)mouseAngle));
   }
-  ship.setTheta(degrees((float)mouseAngle));
 
   background(0);
   for (int i = 0; i < starSky.length; i++) {
@@ -45,6 +47,17 @@ void draw() {
 
 public void keyPressed() {
   if (refresh <= 0) {
+    if (key == 'x') {
+      mouseMode = !mouseMode;
+    }
+    
+    
+    if (key == 'q') {
+      ship.setTheta(ship.getTheta()-9);
+    }
+    if (key == 'e') {
+      ship.setTheta(ship.getTheta()+9);      
+    }    
     if (key == 'w') {
       ship.setXSpeed(ship.getXV() + 0.1*Math.cos(radians((float)ship.getTheta())));
       ship.setYSpeed(ship.getYV() + 0.1*Math.sin(radians((float)ship.getTheta())));
