@@ -1,7 +1,7 @@
 Spaceship ship = new Spaceship();
 Star[] starSky = new Star[200];
 TimerUI hyperBar;
-boolean mouseMode = true;
+boolean mouseMode = false;
 float refresh = 0;
 
 boolean wKey, aKey, sKey, dKey, qKey, eKey;
