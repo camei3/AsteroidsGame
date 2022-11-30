@@ -1,4 +1,5 @@
 Spaceship ship = new Spaceship();
+ArrayList <Asteroid> asteroids = new ArrayList <Asteroid>();
 Star[] starSky = new Star[200];
 TimerUI hyperBar;
 boolean mouseMode = false;
@@ -32,6 +33,10 @@ void draw() {
   }
   ship.move();
   ship.show();
+  for (int i = 0; i < asteroids.size(); i++) {
+    asteroids.get(i).move();
+    asteroids.get(i).show();
+  }
 
   hyperBar.tick(-0.1);
   hyperBar.show();
@@ -83,6 +88,7 @@ public void keyPressed() {
         hyperBar.reset();
       }
     }
+
   }
 }
 public void keyReleased() {
@@ -103,6 +109,13 @@ public void keyReleased() {
   }  
   if (key == 'd') {
     dKey = false;
+  }
+  
+  if (key == '.') {
+    asteroids.add(new Asteroid());
+  }
+  if (asteroids.size() > 0 && key == ',') {
+    asteroids.remove(0);
   }
 }
 void newSky() {
