@@ -1,6 +1,5 @@
 class Asteroid extends Floater {
   private double myRotSpeed;
-  private float mySize;
   public Asteroid() {
     
     myCenterX= width/2;
