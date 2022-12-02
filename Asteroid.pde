@@ -15,23 +15,19 @@ class Asteroid extends Floater {
     ArrayList <Double> auxRadians = new ArrayList <Double>();
     do {
       auxRadians.add(rotation);
-      rotation += Math.random()*(PI/12) + PI/6;      
+      rotation += Math.random()*(PI/12) + PI/6;   
     } while (rotation < 2*PI);
     
     corners = auxRadians.size();
     xCorners = new float[corners];
     yCorners = new float[corners];    
     for (int i = 0; i < corners; i++) {
-      float rFactor = (float)((Math.random()-0.5) * mySize / 4);
-      xCorners[i] = (float)Math.cos(auxRadians.get(i)) * mySize + rFactor;
-      yCorners[i] = (float)Math.sin(auxRadians.get(i)) * mySize + rFactor;
-      
-      //xCorners[i] += (Math.random()-0.5) * mySize / 10;
-      //yCorners[i] += (Math.random()-0.5) * mySize / 10;      
+      float rFactor = (float)((Math.random()-0.5) * mySize / 2);
+      double rRange = (auxRadians.get( (i+1) % auxRadians.size() ) + 2*PI - auxRadians.get(i) ) % (2*PI);
+      xCorners[i] = (float)Math.cos(auxRadians.get(i) + rRange/2 + Math.random()*rRange/5) * (mySize + rFactor);
+      yCorners[i] = (float)Math.sin(auxRadians.get(i) + rRange/2 + Math.random()*rRange/5) * (mySize + rFactor);
     }
-
   }
-  
   
   public void move() {
     myPointDirection += myRotSpeed;
