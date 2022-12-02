@@ -8,7 +8,7 @@ class Floater //Do NOT modify the Floater class! Make changes in the Spaceship c
   protected double myXspeed, myYspeed; //holds the speed of travel in the x and y directions   
   protected double myPointDirection; //holds current direction the ship is pointing in degrees    
   
-  protected float mySize;
+  protected float mySize; //stores hitbox
   
   //Accelerates the floater in the direction it is pointing (myPointDirection)   
   public void accelerate (double dAmount)   
