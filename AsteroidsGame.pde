@@ -36,6 +36,9 @@ void draw() {
   for (int i = 0; i < asteroids.size(); i++) {
     asteroids.get(i).move();
     asteroids.get(i).show();
+    //if (dist(asteroids.get(i).getX(),asteroids.get(i).getY(),ship.getX(),ship.getY() < ship.getSize()+asteroids.get(i).getSize()) {
+    
+    //}
   }
 
   hyperBar.tick(-0.1);
