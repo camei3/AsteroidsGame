@@ -1,4 +1,4 @@
-Spaceship ship = new Spaceship();
+Spaceship ship;
 ArrayList <Asteroid> asteroids = new ArrayList <Asteroid>();
 Star[] starSky = new Star[200];
 TimerUI hyperBar;
@@ -12,6 +12,11 @@ boolean wKey, aKey, sKey, dKey, qKey, eKey;
 void setup() {
   size(800, 600);
   newSky();
+  for (int i = 0; i < asteroids.size(); i++) {
+    asteroids.get(i).setX(Math.random()*width);
+    asteroids.get(i).setY(Math.random()*height);
+  }    
+  ship = new Spaceship();  
   hyperBar = new TimerUI(width/2-100, height-20, 200, 10, 100); 
   wKey = aKey = sKey = dKey = qKey = eKey = false;
 }
@@ -36,10 +41,13 @@ void draw() {
   for (int i = 0; i < asteroids.size(); i++) {
     asteroids.get(i).move();
     asteroids.get(i).show();
-    //if (dist(asteroids.get(i).getX(),asteroids.get(i).getY(),ship.getX(),ship.getY() < ship.getSize()+asteroids.get(i).getSize()) {
-    
-    //}
   }
+  for (int i = asteroids.size()-1; i >= 0; i--) {
+    if (dist((float)asteroids.get(i).getX(),(float)asteroids.get(i).getY(),(float)ship.getX(),(float)ship.getY()) < ship.getSize()+asteroids.get(i).getSize()) {
+      asteroids.remove(i);
+    }
+  }
+
 
   hyperBar.tick(-0.1);
   hyperBar.show();
@@ -125,6 +133,10 @@ void newSky() {
   for (int i = 0; i < starSky.length; i++) {
     starSky[i] = new Star();
   }
+  asteroids = new ArrayList <Asteroid>();
+  for (int i = 0; i < 100; i++) {
+    asteroids.add(new Asteroid());
+  }  
 }
 
 public class TimerUI {
@@ -192,5 +204,3 @@ public void doMovement() {
     ship.setYSpeed(ship.getYV() + 0.01*Math.sin(radians((float)ship.getTheta())+PI/2));
   }
 }
-
-//maybe motion moves respect to orientation?
