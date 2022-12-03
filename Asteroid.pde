@@ -2,13 +2,19 @@ class Asteroid extends Floater {
   private double myRotSpeed;
   public Asteroid() {
     
-    myCenterX= width/2;
-    myCenterY = height/2;
+
+    myCenterX = Math.random()*width;
+    myCenterY = Math.random()*height;
+    if (Math.random() < 0.5) {
+      myCenterX = (int)(Math.random()*2) * width;
+    } else {
+      myCenterY = (int)(Math.random()*2) * height;
+    }
     
     myRotSpeed = (Math.random()-0.5)*2;
     myXspeed = (float)(Math.random()-0.5);
     myYspeed = (float)(Math.random()-0.5);   
-    myColor = color(155,75,10);
+    myColor = lerpColor(color(150,90,10),color(90,80,70),(float)Math.random());
     mySize = (float)Math.random()*8+4;
     double rotation = 0;
     ArrayList <Double> auxRadians = new ArrayList <Double>();
@@ -30,7 +36,13 @@ class Asteroid extends Floater {
   
   public void move() {
     myPointDirection += myRotSpeed;
-    super.move();
+    if (Math.random() < 0.01) {
+      super.move();
+    } else {
+      myCenterX += myXspeed;    
+      myCenterY += myYspeed; 
+    }
+
   }
   
   
