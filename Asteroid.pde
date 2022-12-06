@@ -45,5 +45,4 @@ class Asteroid extends Floater {
 
   }
   
-  
 }
