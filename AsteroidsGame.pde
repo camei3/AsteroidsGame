@@ -1,5 +1,6 @@
 Spaceship ship;
 ArrayList <Asteroid> asteroids = new ArrayList <Asteroid>();
+ArrayList <Bullet> bullets = new ArrayList <Bullet>();
 Star[] starSky = new Star[200];
 TimerUI hyperBar;
 boolean mouseMode = false;
@@ -7,7 +8,7 @@ float refresh = 0;
 
 boolean wKey, aKey, sKey, dKey, qKey, eKey;
 
-
+Bullet temp;
 
 void setup() {
   size(800, 600);
@@ -19,6 +20,7 @@ void setup() {
   ship = new Spaceship();  
   hyperBar = new TimerUI(width/2-100, height-20, 200, 10, 100); 
   wKey = aKey = sKey = dKey = qKey = eKey = false;
+ temp = new Bullet(ship);
 }
 
 void draw() {
@@ -36,6 +38,24 @@ void draw() {
     starSky[i].move();
     starSky[i].show();
   }
+  
+  for (int i = bullets.size()-1; i >= 0; i--) {
+    bullets.get(i).move();    
+    if (bullets.get(i).getLifespan() > 1000) {
+      bullets.remove(i);
+      continue;
+    };
+    bullets.get(i).show();
+    for (int j = asteroids.size()-1; j >= 0; j--) {
+      if (dist((float)asteroids.get(j).getX(),(float)asteroids.get(j).getY(),(float)bullets.get(i).getX(),(float)bullets.get(i).getY()) < bullets.get(i).getSize()+asteroids.get(j).getSize()) {
+        bullets.remove(i);
+        asteroids.remove(j);
+        break;
+      }          
+    }
+  }
+  
+  
   ship.move();
   ship.show();
   for (int i = 0; i < asteroids.size(); i++) {
@@ -66,6 +86,7 @@ void draw() {
     resetMatrix();
     refresh-=2.5;
   }
+
 }
 
 public void keyPressed() {
@@ -102,6 +123,13 @@ public void keyPressed() {
 
   }
 }
+
+public void mouseReleased() {
+  bullets.add(new Bullet(ship));
+  bullets.get(bullets.size()-1).accelerate();
+}
+
+
 public void keyReleased() {
   if (key == 'q') {
     qKey = false;
@@ -133,8 +161,9 @@ void newSky() {
   for (int i = 0; i < starSky.length; i++) {
     starSky[i] = new Star();
   }
+  bullets = new ArrayList <Bullet>();
   asteroids = new ArrayList <Asteroid>();
-  for (int i = 0; i < 100; i++) {
+  for (int i = 0; i < 20; i++) {
     asteroids.add(new Asteroid());
   }  
 }
